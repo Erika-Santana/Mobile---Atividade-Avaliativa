@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
+    android:background="#7CA5668F"
     android:layout_gravity="center">
 
 
@@ -46,7 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="serif-monospace"
-        android:textSize="15sp"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toEndOf="@+id/participantes"
@@ -108,6 +110,8 @@
         android:layout_marginTop="4dp"
         android:fontFamily="serif-monospace"
         android:text="XXX"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toEndOf="@+id/text_otimo"
@@ -120,6 +124,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="serif-monospace"
         android:text="XXX"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text_bom"
         app:layout_constraintTop_toTopOf="@+id/text_bom" />
@@ -130,6 +136,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="serif-monospace"
         android:text="XXX"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text_ruim"
         app:layout_constraintTop_toTopOf="@+id/text_ruim" />
@@ -140,6 +148,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="serif-monospace"
         android:text="XXX"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text_regular"
         app:layout_constraintTop_toTopOf="@+id/text_regular" />

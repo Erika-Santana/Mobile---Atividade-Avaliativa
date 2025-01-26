@@ -25,10 +25,9 @@ class FormActivity : AppCompatActivity() {
     }
 
     private fun setupListener() {
-        var prontuario = binding.editProntuario.text.toString().trim()
-        var nome = binding.editNome.text.toString().trim()
-
         binding.buttonCadastro.setOnClickListener {
+            var nome = binding.editNome.text.toString().trim()
+            var prontuario = binding.editProntuario.text.toString().trim()
             if (viewModel.checkUser(prontuario)){
                 var usuario = viewModel.getNameUser(prontuario)
                 Toast.makeText(this, "Usuário ${usuario} já votou!", Toast.LENGTH_SHORT).show()

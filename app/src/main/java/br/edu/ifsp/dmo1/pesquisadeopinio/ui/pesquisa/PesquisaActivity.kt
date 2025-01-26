@@ -39,14 +39,21 @@ class PesquisaActivity: AppCompatActivity() {
                     binding.radioRegular.id -> "REGULAR"
                     binding.radioOtimo.id -> "OTIMO"
                     else -> ""
+
                 }
 
             }
 
 
             var intent = Intent(this, VoteActivity::class.java )
-            intent.putExtra("voteType", checkedButton)
-            startActivity(intent)
+            if (checkedButton.equals("")){
+                Toast.makeText(this, "Por favor selecione uma opção!", Toast.LENGTH_SHORT).show()
+            }else{
+                intent.putExtra("voteType", checkedButton)
+                startActivity(intent)
+                finish()
+            }
+
 
         }
     }

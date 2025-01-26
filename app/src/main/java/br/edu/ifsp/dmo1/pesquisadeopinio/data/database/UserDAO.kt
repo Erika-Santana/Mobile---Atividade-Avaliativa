@@ -41,7 +41,7 @@ class UserDAO(private val database: DatabaseHelper) {
             null,
             null
         ).use { cursor ->
-            return cursor.moveToFirst()
+            return cursor.moveToNext()
         }
     }
 
