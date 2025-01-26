@@ -1,6 +1,6 @@
 package br.edu.ifsp.dmo1.pesquisadeopinio.data.model
 
-class Votes(val type: VotesType ) {
+class Votes(private val type: VotesType ) {
     private var comprovante: String = ""
 
 

@@ -21,16 +21,17 @@ class VoteDAO(private val database: DatabaseHelper) {
         var readable = database.readableDatabase
         var columns = arrayOf(DatabaseHelper.DATABASE_KEYS.COLUMN_ENUM_VOTO)
         var where = "${DatabaseHelper.DATABASE_KEYS.COLUMN_RECEIPT} = ?"
-        var livroCode = arrayOf(code)
+        var code = arrayOf(code)
+        var resultado = ""
 
-        val cursor = readable.query(DatabaseHelper.DATABASE_KEYS.TABLE_NAME_VOTO, columns, where, livroCode, null, null, null)
+        val cursor = readable.query(DatabaseHelper.DATABASE_KEYS.TABLE_NAME_VOTO, columns, where, code, null, null, null)
 
-        if (cursor.moveToFirst()){
-            var resultado = cursor.move(0).toString()
-            return resultado
+        if (cursor.moveToNext()){
+             resultado = cursor.getString(0)
+
         }
 
-        return ""
+        return resultado
     }
 
     /*Pega todos os votos já feitos*/
@@ -51,16 +52,14 @@ class VoteDAO(private val database: DatabaseHelper) {
     fun countVotesByType(votesType: VotesType): Int{
 
         val readable = database.readableDatabase
-        val columns = arrayOf(DatabaseHelper.DATABASE_KEYS.COLUMN_RECEIPT)
-        val where = "${DatabaseHelper.DATABASE_KEYS.COLUMN_ENUM_VOTO} = ?"
+        val query = "SELECT ${DatabaseHelper.DATABASE_KEYS.COLUMN_ENUM_VOTO}, COUNT(*) FROM ${DatabaseHelper.DATABASE_KEYS.TABLE_NAME_VOTO} WHERE ${DatabaseHelper.DATABASE_KEYS.COLUMN_ENUM_VOTO} = ${votesType} GROUP BY ${DatabaseHelper.DATABASE_KEYS.COLUMN_ENUM_VOTO} "
 
-       val whereArgs = arrayOf(votesType.toString())
-        val cursor = 0
-        readable.query(
-            DatabaseHelper.DATABASE_KEYS.TABLE_NAME_VOTO, columns, where, whereArgs, null,null,null ).use { contagem ->  contagem.count }
+        var cursor = readable.rawQuery(query, null)
 
-        return cursor
-
+        if (cursor.moveToNext()){
+            return cursor.getInt(0)
+        }
+        return 0
     }
 
 
@@ -69,9 +68,9 @@ class VoteDAO(private val database: DatabaseHelper) {
         var readable = database.readableDatabase
         var columns = arrayOf(DatabaseHelper.DATABASE_KEYS.COLUMN_RECEIPT)
         var where = "${DatabaseHelper.DATABASE_KEYS.COLUMN_RECEIPT} = ?"
-        var livroCode = arrayOf(vote)
+        var voteCode = arrayOf(vote)
 
-        val cursor = readable.query(DatabaseHelper.DATABASE_KEYS.TABLE_NAME_VOTO, columns, where, livroCode, null, null, null)
+        val cursor = readable.query(DatabaseHelper.DATABASE_KEYS.TABLE_NAME_VOTO, columns, where, voteCode, null, null, null)
 
         val exists = cursor.count > 0
         cursor.close()

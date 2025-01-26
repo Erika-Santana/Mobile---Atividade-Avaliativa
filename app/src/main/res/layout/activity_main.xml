@@ -30,6 +30,7 @@
 
 
     <Button
+        android:layout_marginTop="30dp"
         android:id="@+id/participar_pesquisa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,6 +44,7 @@
 
 
     <Button
+        android:layout_marginTop="30dp"
         android:id="@+id/checar_voto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,6 +58,7 @@
 
     <Button
         android:id="@+id/finalizar"
+        android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif-monospace"

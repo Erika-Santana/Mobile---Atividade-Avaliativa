@@ -18,7 +18,6 @@ class FormActivity : AppCompatActivity() {
         binding = ActivityFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
         super.onCreate(savedInstanceState)
-
         viewModel = ViewModelProvider(this).get(FormViewModel::class.java)
 
         setupListener()
@@ -27,17 +26,20 @@ class FormActivity : AppCompatActivity() {
     private fun setupListener() {
         var prontuario = binding.editProntuario.text.toString().trim()
         var nome = binding.editNome.text.toString().trim()
-        binding.buttonCadastro.setOnClickListener({
-           var boolean =  viewModel.insereUser(prontuario, nome)
 
-            if (boolean){
-                val intent =  Intent(this, PesquisaActivity::class.java)
+        binding.buttonCadastro.setOnClickListener {
+            var boolean = viewModel.insereUser(prontuario, nome)
+
+            if (boolean) {
+                val intent = Intent(this, PesquisaActivity::class.java)
                 startActivity(intent)
-            }else{
-                Toast.makeText(this, "Erro ao realizar o cadastro! Tente novamente.", Toast.LENGTH_SHORT)
+            } else {
+                Toast.makeText(
+                    this,
+                    "Erro ao realizar o cadastro! Tente novamente.",
+                    Toast.LENGTH_SHORT
+                )
             }
-        })
+        }
     }
-
-
 }

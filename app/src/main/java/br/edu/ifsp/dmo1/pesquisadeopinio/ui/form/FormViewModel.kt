@@ -10,6 +10,9 @@ class FormViewModel(application: Application) : AndroidViewModel(application){
 
     private lateinit var database : UserRepository
 
+    init{
+        database = UserRepository(application)
+    }
     fun insereUser( prontuarioValor: String, nome: String): Boolean{
         val user =  User(prontuarioValor, nome)
        if (database.addUser(user) ){
