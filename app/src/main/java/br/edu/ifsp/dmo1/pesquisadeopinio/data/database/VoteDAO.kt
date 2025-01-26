@@ -49,17 +49,21 @@ class VoteDAO(private val database: DatabaseHelper) {
 
     }
 
+
     fun countVotesByType(votesType: VotesType): Int{
 
         val readable = database.readableDatabase
-        val query = "SELECT ${DatabaseHelper.DATABASE_KEYS.COLUMN_ENUM_VOTO}, COUNT(*) FROM ${DatabaseHelper.DATABASE_KEYS.TABLE_NAME_VOTO} WHERE ${DatabaseHelper.DATABASE_KEYS.COLUMN_ENUM_VOTO} = ${votesType} GROUP BY ${DatabaseHelper.DATABASE_KEYS.COLUMN_ENUM_VOTO} "
+        val query = "SELECT COUNT(*) FROM ${DatabaseHelper.DATABASE_KEYS.TABLE_NAME_VOTO} WHERE ${DatabaseHelper.DATABASE_KEYS.COLUMN_ENUM_VOTO} = ? "
 
-        var cursor = readable.rawQuery(query, null)
+        var cursor = readable.rawQuery(query, arrayOf(votesType.toString()))
+        var result = 0
 
-        if (cursor.moveToNext()){
-            return cursor.getInt(0)
+        cursor.use{
+            if (it.moveToNext()){
+                result = it.getInt(0)
+            }
         }
-        return 0
+        return result
     }
 
 

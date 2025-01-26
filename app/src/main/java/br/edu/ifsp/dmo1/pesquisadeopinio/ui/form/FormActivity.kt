@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import br.edu.ifsp.dmo1.pesquisadeopinio.databinding.ActivityFormBinding
 import br.edu.ifsp.dmo1.pesquisadeopinio.ui.pesquisa.PesquisaActivity
+import br.edu.ifsp.dmo1.pesquisadeopinio.ui.votos.VoteActivity
 
 /*Classe responsável por realizar o Login do usuário*/
 class FormActivity : AppCompatActivity() {
@@ -28,18 +29,24 @@ class FormActivity : AppCompatActivity() {
         var nome = binding.editNome.text.toString().trim()
 
         binding.buttonCadastro.setOnClickListener {
-            var boolean = viewModel.insereUser(prontuario, nome)
+            if (viewModel.checkUser(prontuario)){
+                var usuario = viewModel.getNameUser(prontuario)
+                Toast.makeText(this, "Usuário ${usuario} já votou!", Toast.LENGTH_SHORT).show()
+            }else{
+                var boolean = viewModel.insereUser(prontuario, nome)
 
-            if (boolean) {
-                val intent = Intent(this, PesquisaActivity::class.java)
-                startActivity(intent)
-            } else {
-                Toast.makeText(
-                    this,
-                    "Erro ao realizar o cadastro! Tente novamente.",
-                    Toast.LENGTH_SHORT
-                )
+                if (boolean) {
+                    val intent = Intent(this, PesquisaActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Erro ao realizar o cadastro! Tente novamente.",
+                        Toast.LENGTH_SHORT
+                    )
+                }
             }
+
         }
     }
 }

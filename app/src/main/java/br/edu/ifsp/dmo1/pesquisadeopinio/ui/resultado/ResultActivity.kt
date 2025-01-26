@@ -31,7 +31,7 @@ class ResultActivity: AppCompatActivity() {
             contagem -> binding.numeroRuim.text = "${contagem}"
         })
         viewModel.votesBom.observe(this, Observer {
-                contagem -> binding.numeroOtimo.text = "${contagem}"
+                contagem -> binding.numeroBom.text = "${contagem}"
         })
         viewModel.votesOtimo.observe(this, Observer {
                 contagem -> binding.numeroOtimo.text = "${contagem}"

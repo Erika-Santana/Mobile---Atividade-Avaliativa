@@ -12,6 +12,8 @@ class UserRepository(context: Context) {
 
     fun addUser(user: User) = dao.insert(user)
 
+    fun getUser(prontuario: String) :String = dao.getUser(prontuario)
+
     fun doesExists(prontuario:String ) = dao.doesUserExists(prontuario)
 
 

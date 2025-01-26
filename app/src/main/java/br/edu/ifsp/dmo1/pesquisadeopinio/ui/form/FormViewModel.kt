@@ -20,4 +20,10 @@ class FormViewModel(application: Application) : AndroidViewModel(application){
        }
         return false
     }
+
+    fun checkUser(prontuario: String): Boolean{
+       return database.doesExists(prontuario)
+    }
+
+    fun getNameUser(prontuario:String): String = database.getUser(prontuario)
 }
