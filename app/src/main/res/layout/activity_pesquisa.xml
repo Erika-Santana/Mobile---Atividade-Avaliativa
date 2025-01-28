@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:fontFamily="serif-monospace"
-        android:text="Dê a sua opinião geral sobre o conjunto de fatores que definem a faculdade (arquitetura, pintura, paisagismo etc... ) da faculdade IFSP - ARQ. \n\n Esses fatores você consideraria ser:"
+        android:text="Selecione a opção que expresse de maneira geral a sua opinião sobre o conjunto de fatores que definem a faculdade (arquitetura, pintura, paisagismo, ensino, professores etc... ) da faculdade IFSP - ARQ:"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/pesquisa" />
 

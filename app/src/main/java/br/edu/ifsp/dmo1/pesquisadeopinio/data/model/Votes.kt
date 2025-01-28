@@ -3,7 +3,6 @@ package br.edu.ifsp.dmo1.pesquisadeopinio.data.model
 class Votes(private val type: VotesType ) {
     private var comprovante: String = ""
 
-
     init {
        comprovante =  generateReceipt()
     }

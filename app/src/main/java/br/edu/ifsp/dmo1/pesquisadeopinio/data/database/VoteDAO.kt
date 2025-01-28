@@ -6,6 +6,7 @@ import br.edu.ifsp.dmo1.pesquisadeopinio.data.model.VotesType
 
 class VoteDAO(private val database: DatabaseHelper) {
 
+    /*Insere o voto no banco*/
     fun insert(vote: Votes){
         var writable = database.writableDatabase
         var valor = ContentValues().apply {
@@ -16,7 +17,8 @@ class VoteDAO(private val database: DatabaseHelper) {
         writable.insert(DatabaseHelper.DATABASE_KEYS.TABLE_NAME_VOTO, null, valor)
     }
 
-    /* Retorna código por usuário*/
+    /* Retorna tipo de voto por código*/
+
     fun getTypeVoteByCODE(code: String) : String{
         var readable = database.readableDatabase
         var columns = arrayOf(DatabaseHelper.DATABASE_KEYS.COLUMN_ENUM_VOTO)
@@ -24,7 +26,13 @@ class VoteDAO(private val database: DatabaseHelper) {
         var code = arrayOf(code)
         var resultado = ""
 
-        val cursor = readable.query(DatabaseHelper.DATABASE_KEYS.TABLE_NAME_VOTO, columns, where, code, null, null, null)
+        val cursor = readable.query(DatabaseHelper.DATABASE_KEYS.TABLE_NAME_VOTO,
+            columns,
+            where,
+            code,
+            null,
+            null,
+            null)
 
         if (cursor.moveToNext()){
              resultado = cursor.getString(0)
@@ -34,7 +42,7 @@ class VoteDAO(private val database: DatabaseHelper) {
         return resultado
     }
 
-    /*Pega todos os votos já feitos*/
+    /*Contabiliza todos os votos já feitos*/
     fun countVotes(): Int {
         val readable = database.readableDatabase
         val query = "SELECT COUNT(*) FROM ${DatabaseHelper.DATABASE_KEYS.TABLE_NAME_VOTO}"
@@ -49,11 +57,11 @@ class VoteDAO(private val database: DatabaseHelper) {
 
     }
 
-
+    /*Contabiliza de acordo com o seu tipo*/
     fun countVotesByType(votesType: VotesType): Int{
-
         val readable = database.readableDatabase
-        val query = "SELECT COUNT(*) FROM ${DatabaseHelper.DATABASE_KEYS.TABLE_NAME_VOTO} WHERE ${DatabaseHelper.DATABASE_KEYS.COLUMN_ENUM_VOTO} = ? "
+        val query = "SELECT COUNT(*) FROM ${DatabaseHelper.DATABASE_KEYS.TABLE_NAME_VOTO} " +
+                "WHERE ${DatabaseHelper.DATABASE_KEYS.COLUMN_ENUM_VOTO} = ? "
 
         var cursor = readable.rawQuery(query, arrayOf(votesType.toString()))
         var result = 0
@@ -66,15 +74,20 @@ class VoteDAO(private val database: DatabaseHelper) {
         return result
     }
 
-
+    //Função que verifica se o código existe
     fun doesVoteExists(vote: String): Boolean{
-
         var readable = database.readableDatabase
         var columns = arrayOf(DatabaseHelper.DATABASE_KEYS.COLUMN_RECEIPT)
         var where = "${DatabaseHelper.DATABASE_KEYS.COLUMN_RECEIPT} = ?"
         var voteCode = arrayOf(vote)
 
-        val cursor = readable.query(DatabaseHelper.DATABASE_KEYS.TABLE_NAME_VOTO, columns, where, voteCode, null, null, null)
+        val cursor = readable.query(DatabaseHelper.DATABASE_KEYS.TABLE_NAME_VOTO,
+            columns,
+            where,
+            voteCode,
+            null,
+            null,
+            null)
 
         val exists = cursor.count > 0
         cursor.close()

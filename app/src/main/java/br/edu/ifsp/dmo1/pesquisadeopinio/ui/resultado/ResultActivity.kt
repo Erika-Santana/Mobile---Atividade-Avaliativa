@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.edu.ifsp.dmo1.pesquisadeopinio.databinding.ActivityResultBinding
-import br.edu.ifsp.dmo1.pesquisadeopinio.ui.form.FormViewModel
+
 
 class ResultActivity: AppCompatActivity() {
 

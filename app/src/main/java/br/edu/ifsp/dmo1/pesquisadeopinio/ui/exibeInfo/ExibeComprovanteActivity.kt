@@ -26,11 +26,10 @@ class ExibeComprovanteActivity:AppCompatActivity() {
         var comprovante = intent.getStringExtra("Comprovante")
         if (comprovante != null){
             var type = viewModel.getVoteInformations(comprovante)
-            Toast.makeText(this, "Tipo ${type}", Toast.LENGTH_SHORT).show()
             binding.textoComprovante.text = comprovante
             binding.textoVoto.text = type
         }else{
-            Toast.makeText(this, "Erro pegar o comprovante", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Erro!", Toast.LENGTH_SHORT).show()
         }
     }
 }

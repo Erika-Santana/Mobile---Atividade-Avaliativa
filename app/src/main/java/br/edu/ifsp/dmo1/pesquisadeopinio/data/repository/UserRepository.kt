@@ -16,5 +16,4 @@ class UserRepository(context: Context) {
 
     fun doesExists(prontuario:String ) = dao.doesUserExists(prontuario)
 
-
 }

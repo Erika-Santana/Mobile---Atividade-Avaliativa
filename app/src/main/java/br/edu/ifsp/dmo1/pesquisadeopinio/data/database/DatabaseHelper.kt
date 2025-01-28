@@ -3,8 +3,9 @@ package br.edu.ifsp.dmo1.pesquisadeopinio.data.database
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+
 /*Classe responsável por fazer a conexão com o banco de dados e também o upgrade quando for necessário,
- definindo as constantes do banco de dados e as querys*/
+ definindo as constantes do banco de dados e as suas querys*/
 
 class DatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_KEYS.DATABASE_NAME, null, DATABASE_KEYS.DATABASE_VERSION){
 
@@ -28,7 +29,7 @@ class DatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_KEY
         const val DROP_TABLE_VOTO = "DROP TABLE IF EXISTS ${DATABASE_KEYS.TABLE_NAME_VOTO}"
     }
 
-    /*Criação das tabelas no banco SQL*/
+    /* Criação das tabelas no banco SQLite */
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(CREATE_TABLE_USER)
         db.execSQL(CREATE_TABLE_VOTO)

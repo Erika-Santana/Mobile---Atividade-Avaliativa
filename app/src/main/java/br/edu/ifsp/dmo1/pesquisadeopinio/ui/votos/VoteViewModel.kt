@@ -6,12 +6,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import br.edu.ifsp.dmo1.pesquisadeopinio.data.model.Votes
 import br.edu.ifsp.dmo1.pesquisadeopinio.data.model.VotesType
-import br.edu.ifsp.dmo1.pesquisadeopinio.data.repository.UserRepository
 import br.edu.ifsp.dmo1.pesquisadeopinio.data.repository.VotesRepository
 
 class VoteViewModel (application: Application) : AndroidViewModel(application){
 
-    private lateinit var database : VotesRepository
+    private var database : VotesRepository
 
     /*Guarda o ultimo voto inserido no banco*/
     private val _lastVote = MutableLiveData<Votes>()

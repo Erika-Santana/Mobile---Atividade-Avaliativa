@@ -12,22 +12,18 @@ import br.edu.ifsp.dmo1.pesquisadeopinio.ui.votos.VoteActivity
 class PesquisaActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityPesquisaBinding
-    private lateinit var viewModel: PesquisaViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityPesquisaBinding.inflate(layoutInflater)
         setContentView(binding.root)
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[PesquisaViewModel::class.java]
-
         setupListeners()
     }
 
     private fun setupListeners() {
-        var checkedButton : String = ""
         binding.voto.setOnClickListener{
-
+            var checkedButton : String = ""
             var idRadioGroup = binding.radioGroup.checkedRadioButtonId
 
             if (idRadioGroup != -1){
@@ -41,9 +37,7 @@ class PesquisaActivity: AppCompatActivity() {
                     else -> ""
 
                 }
-
             }
-
 
             var intent = Intent(this, VoteActivity::class.java )
             if (checkedButton.equals("")){

@@ -8,6 +8,7 @@ import br.edu.ifsp.dmo1.pesquisadeopinio.data.model.User
 class UserDAO(private val database: DatabaseHelper) {
 
     /*Função de inserção dos dados dos usuários no banco de dados*/
+
     fun insert(user: User): Boolean {
         //abre instância para inserção dos dados
         val writable = database.writableDatabase
@@ -22,10 +23,7 @@ class UserDAO(private val database: DatabaseHelper) {
         return true
     }
 
-
-    /*Função responsável por pegar todos os dados associados ao user*/
-    fun getAllInfoUser() {}
-
+    /*Função que verifica se o usuário já existe no banco de dados*/
     fun doesUserExists(prontuario: String): Boolean {
         val banco = database.readableDatabase
         val columns = arrayOf(DatabaseHelper.DATABASE_KEYS.COLUMN_TEXTO_PRONTUARIO)
@@ -46,6 +44,7 @@ class UserDAO(private val database: DatabaseHelper) {
     }
 
 
+    /*Função que recupera o nome do usuário através do prontuário*/
     fun getUser(prontuario: String): String {
         val banco = database.readableDatabase
         val column = arrayOf(DatabaseHelper.DATABASE_KEYS.COLUMN_TEXTO_NOME)
@@ -68,21 +67,7 @@ class UserDAO(private val database: DatabaseHelper) {
         }
 
 
-        return "vazio"
+        return "Vazio"
     }
 
 }
-
-//
-//    fun getUser(prontuario: String): String{
-//        val banco = database.readableDatabase
-//        val column = arrayOf(DatabaseHelper.DATABASE_KEYS.COLUMN_TEXTO_NOME)
-//        val where = "${DatabaseHelper.DATABASE_KEYS.COLUMN_TEXTO_PRONTUARIO} = ?"
-//        val userWhere = arrayOf(prontuario)
-//
-//        banco.query(DatabaseHelper.DATABASE_KEYS.TABLE_NAME_USER, column, where, userWhere, null, null, null).use{
-//            cursor -> cursor.moveToNext()
-//            return cursor.getString(0)
-//        }
-//    }
-

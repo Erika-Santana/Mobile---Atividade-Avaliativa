@@ -28,24 +28,27 @@ class FormActivity : AppCompatActivity() {
         binding.buttonCadastro.setOnClickListener {
             var nome = binding.editNome.text.toString().trim()
             var prontuario = binding.editProntuario.text.toString().trim()
-            if (viewModel.checkUser(prontuario)){
-                var usuario = viewModel.getNameUser(prontuario)
-                Toast.makeText(this, "Usuário ${usuario} já votou!", Toast.LENGTH_SHORT).show()
-            }else{
-                var boolean = viewModel.insereUser(prontuario, nome)
 
-                if (boolean) {
-                    val intent = Intent(this, PesquisaActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(
-                        this,
-                        "Erro ao realizar o cadastro! Tente novamente.",
-                        Toast.LENGTH_SHORT
-                    )
+            if (nome.isEmpty() || prontuario.isEmpty()) {
+                Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show()
+            }else{
+                if (viewModel.checkUser(prontuario)){
+                    var usuario = viewModel.getNameUser(prontuario)
+                    Toast.makeText(this, "Usuário ${usuario} já votou!", Toast.LENGTH_SHORT).show()
+                }else{
+                    var boolean = viewModel.insereUser(prontuario, nome)
+                    if (boolean) {
+                        val intent = Intent(this, PesquisaActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "Erro ao realizar o cadastro! Tente novamente.",
+                            Toast.LENGTH_SHORT
+                        )
+                    }
                 }
             }
-
         }
     }
 }
